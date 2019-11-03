@@ -1,23 +1,29 @@
 from bs4 import BeautifulSoup
 import requests
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-strin = input("Enter the value /n")
-browser = webdriver.Chrome('/home/ganesh/Downloads/chromedriver')
+s = input('Enter the text\n')
+chrome_options = Options()
+chrome_options.add_argument("--disable-extensions")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--headless")
+browser = webdriver.Chrome('/home/ganesh/Downloads/chromedriver',options=chrome_options)
+
 browser.get('https://www.flipkart.com')
 try:
     abc = browser.find_element_by_xpath("//div[@class ='_3Njdz7']//button[@class = '_2AkmmA _29YdH8']")
     abc.click()
 except:
     print("hi")
-print(abc)
+#print(abc)
 mob = browser.find_element_by_id('container')
 inputs = mob.find_element_by_class_name('LM6RPg')
-inputs.send_keys(strin)
+inputs.send_keys(s)
 clicked = mob.find_element_by_class_name('vh79eN').click()
-print("---------------------------------------")
+#print("---------------------------------------")
 browser.implicitly_wait(30)
 j = 2
 test = browser.find_element_by_class_name('_3O0U0u')
